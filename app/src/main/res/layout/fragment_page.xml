@@ -4,9 +4,21 @@
     android:layout_height="match_parent"
     tools:context="com.example.ec_dev.searchviewapplication.PageFragment">
 
-    <SearchView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_gravity="top" />
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:queryHint="文字を入力してください"/>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/searchView"/>
+    </RelativeLayout>
 </FrameLayout>

@@ -1,7 +1,5 @@
 package com.example.ec_dev.searchviewapplication;
 
-import android.app.FragmentTransaction;
-import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,22 +21,14 @@ public class MainActivity extends AppCompatActivity implements PageFragment.OnFr
 
         PageFragment pageFragment = PageFragment.newInstance("test");
         getSupportFragmentManager().beginTransaction().add(R.id.container, pageFragment).commit();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+
+        return false;
     }
 
     @Override

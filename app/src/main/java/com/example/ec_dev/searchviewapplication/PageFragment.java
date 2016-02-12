@@ -4,6 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
+import android.widget.ArrayAdapter;
+import android.widget.Filterable;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +31,10 @@ public class PageFragment extends Fragment {
     private String mParam;
 
     private OnFragmentInteractionListener mListener;
+
+    private SearchView searchView;
+    private ListView listView;
+    private String[] listArr = {"Kato", "Sato", "Saito", "Kaito", "Naito"};
 
     public PageFragment() {
         // Required empty public constructor
@@ -59,7 +68,44 @@ public class PageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_page, container, false);
+        this.searchView = (SearchView)view.findViewById(R.id.searchView);
+        // アイコン＋検索ボックスを表示
+        this.searchView.setIconifiedByDefault(false);
+        this.listView = (ListView)view.findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_1, listArr);
+        this.listView.setAdapter(adapter);
+        this.listView.setTextFilterEnabled(false);
+
+        //this.searchView.setQueryHint("検索したい文字を入力してください。");
+        this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                // SubmitボタンまたはEnterKeyが押されたときに呼び出される処理
+                SearchView searchView = (SearchView)view.findViewById(R.id.searchView);
+                ListView listView = (ListView)view.findViewById(R.id.listView);
+                android.widget.Filter filter = ((Filterable)listView.getAdapter()).getFilter();
+                if(TextUtils.isEmpty(s)) {
+                    // リストの検索フィルターをクリア
+                    listView.clearTextFilter();
+                } else {
+                    // リストをフィルタリング
+                    filter.filter(s);
+                    // 検索ボックスからフォーカスを外す
+                    searchView.clearFocus();
+                }
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // 検索ボックスに入力される度に呼び出される処理
+                return false;
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
