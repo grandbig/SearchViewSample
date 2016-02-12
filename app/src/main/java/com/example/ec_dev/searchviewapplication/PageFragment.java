@@ -34,7 +34,8 @@ public class PageFragment extends Fragment {
 
     private SearchView searchView;
     private ListView listView;
-    private String[] listArr = {"Kato", "Sato", "Saito", "Kaito", "Naito"};
+    private String[] listArr = {"Kato", "Sato", "Saito", "Kaito", "Naito", "Kudo", "Shindo", "Muto",
+            "Todo", "Ato", "Ito", "Eto", "Kito", "Koto", "Sudo", "Nato", "Nito", "Yato", "Yoto", "Wato"};
 
     public PageFragment() {
         // Required empty public constructor
