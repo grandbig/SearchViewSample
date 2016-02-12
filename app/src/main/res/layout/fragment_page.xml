@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.ec_dev.searchviewapplication.PageFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <SearchView
         android:layout_width="match_parent"
-        android:layout_height="568dp"
-        android:text="@string/hello_blank_fragment"
-        android:layout_gravity="left|top" />
-
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:layout_gravity="top" />
 </FrameLayout>
