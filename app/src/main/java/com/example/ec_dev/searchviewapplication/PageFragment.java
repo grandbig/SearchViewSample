@@ -77,7 +77,6 @@ public class PageFragment extends Fragment {
         this.listView.setAdapter(adapter);
         this.listView.setTextFilterEnabled(false);
 
-        //this.searchView.setQueryHint("検索したい文字を入力してください。");
         this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
