@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Filterable;
 import android.widget.ListView;
@@ -77,6 +78,13 @@ public class PageFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_1, listArr);
         this.listView.setAdapter(adapter);
         this.listView.setTextFilterEnabled(false);
+        this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                onButtonPressed("選択されました");
+            }
+        });
+
 
         this.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -109,9 +117,9 @@ public class PageFragment extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String item) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(item);
         }
     }
 
@@ -144,6 +152,6 @@ public class PageFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(String item);
     }
 }

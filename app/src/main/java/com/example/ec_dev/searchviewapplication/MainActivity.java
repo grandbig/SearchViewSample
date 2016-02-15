@@ -10,7 +10,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity implements PageFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements PageFragment.OnFragmentInteractionListener,
+        ChangedPageFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,13 @@ public class MainActivity extends AppCompatActivity implements PageFragment.OnFr
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onFragmentInteraction(String item) {
+        ChangedPageFragment changedPageFragment = ChangedPageFragment.newInstance("test2");
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, changedPageFragment).commit();
+    }
+
+    @Override
+    public void onChangedPageFragmentInteraction(Uri uri) {
 
     }
 }
